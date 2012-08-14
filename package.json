@@ -1,6 +1,6 @@
 {
   "name": "config-env.js",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Various config determined by process.env",
   "main": "lib/config-env.js",
   "directories": {
