@@ -1,5 +1,5 @@
 {
-  "name": "config-env.js",
+  "name": "config-env",
   "version": "0.1.0",
   "description": "Various config determined by process.env",
   "main": "lib/config-env.js",
