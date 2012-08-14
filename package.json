@@ -1,0 +1,23 @@
+{
+  "name": "config-env.js",
+  "version": "0.0.0",
+  "description": "Various config determined by process.env",
+  "main": "lib/config-env.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cho45/config-env.js.git"
+  },
+  "keywords": [
+    "config",
+    "env",
+    "envionment"
+  ],
+  "author": "cho45",
+  "license": "MIT"
+}
