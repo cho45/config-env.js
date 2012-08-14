@@ -2,18 +2,47 @@
 
 var assert = require('assert');
 
-var config = require('./data/config1');
+(function () {
+	var config = require('../lib/config-env.js').define('NODE_ENV', function (config) {
+		config.common({
+			name: 'test'
+		});
 
-console.log(config.dump());
+		config.config('production', {
+			foo : 'prod'
+		});
 
-assert.strictEqual(config.param('name'), 'test');
-assert.strictEqual(config.param('foo'), undefined);
+		config.config('development', {
+			foo : 'dev'
+		});
+	});
 
-process.env['NODE_ENV'] = 'development';
-assert.strictEqual(config.param('name'), 'test');
-assert.strictEqual(config.param('foo'), 'dev');
+	delete process.env['NODE_ENV'];
+	assert.strictEqual(config.param('name'), 'test');
+	assert.strictEqual(config.param('foo'), undefined);
 
-process.env['NODE_ENV'] = 'production';
-assert.strictEqual(config.param('name'), 'test');
-assert.strictEqual(config.param('foo'), 'prod');
+	process.env['NODE_ENV'] = 'development';
+	assert.strictEqual(config.param('name'), 'test');
+	assert.strictEqual(config.param('foo'), 'dev');
 
+	process.env['NODE_ENV'] = 'production';
+	assert.strictEqual(config.param('name'), 'test');
+	assert.strictEqual(config.param('foo'), 'prod');
+})();
+
+
+(function () {
+	var config = require('./data/config1');
+
+	delete process.env['NODE_ENV'];
+	assert.strictEqual(config.param('name'), 'test');
+	assert.strictEqual(config.param('foo'), undefined);
+
+	process.env['NODE_ENV'] = 'development';
+	assert.strictEqual(config.param('name'), 'test');
+	assert.strictEqual(config.param('foo'), 'dev');
+
+	process.env['NODE_ENV'] = 'production';
+	assert.strictEqual(config.param('name'), 'test');
+	assert.strictEqual(config.param('foo'), 'prod');
+})();
